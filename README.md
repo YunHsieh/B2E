@@ -12,6 +12,16 @@ Please provide public git repository
   - The app should be able to launch ANYWHERE
 
 
+# 安裝部屬
+使用Docker 進行跨平台的部屬以及
+
+```
+docker-compose up
+```
+![](https://i.imgur.com/KgVPZCh.png)
+
+部屬完成
+
 ## URL Shortener
 
 Get /{tinyurl}
@@ -27,7 +37,11 @@ encode 將直接轉換網址
 ![](https://i.imgur.com/45xAtiU.png)
 將會得到一組短網址
 
-而此做法是用亂樹之後進行BASE62轉換
+而此做法是用亂數之後進行BASE62轉換
 得到6碼的短網址特徵
+
+如要長期保存
+iskeepforever
+將得到8碼的短網址特徵
 
 而如果有一樣則會先驗證之後傳遞

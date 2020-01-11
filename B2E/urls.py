@@ -20,6 +20,7 @@ from app import views
 
 urlpatterns = [
 	# url(r'^/convert/$', views.TinyUrl.as_view()),
-	url(r'^text-to-tinyurl/$', views.TinyUrl.as_view()),   
-	url(r'^(?P<tinyurl>\w{0,200})$', views.TinyUrl.as_view()), 
+	url(r'^text-to-tinyurl/$', views.TinyUrl.as_view()),
+    url(r'^tinyurlmgr/$', views.TinyUrlMgr.as_view()),
+	url(r'^(?P<tinyurl>\w{0,300})$', views.TinyUrl.as_view()), 
 ]

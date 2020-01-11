@@ -10,6 +10,7 @@ class StoreURLSerializers(serializers.ModelSerializer):
 		fields = (
 			'short_key',
 			'url',
-			'create_time'
+			'create_time',
+			'iskeepforever',
 		)
 

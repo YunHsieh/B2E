@@ -27,7 +27,7 @@ BASE_URL = 'http://127.0.0.1:8000/'
 SECRET_KEY = 'e*stlq7b)*syu^_!$bz(7h1rm1_o9as=&hr^v%idp=6-z(ws4x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 

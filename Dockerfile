@@ -1,7 +1,7 @@
 FROM python:3
 ENV PYTHONUNBUFFERED 1
-RUN mkdir /B2E
-WORKDIR /B2E
-COPY requirements.txt /B2E/
+RUN mkdir /b2e
+WORKDIR /b2e
+COPY requirements.txt /b2e/
 RUN pip install -r requirements.txt
-COPY . /B2E/
+COPY . /b2e/
