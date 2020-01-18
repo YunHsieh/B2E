@@ -1,4 +1,3 @@
-
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
@@ -19,12 +18,8 @@ from datetime import datetime, timedelta
 # Create your views here.
 class TinyUrl(APIView):
     permission_classes = [AllowAny ]
-    def get(self, request, tinyurl):
-        obj_url = store_tinyurl.objects.get(pk=tinyurl)
-        return HttpResponseRedirect(obj_url.url)
 
-    # if pk is already in db   so re-get again
-    def reGetShortCode(self, keeplongtime = 0):
+    def _reGetShortCode(self, keeplongtime = 0):
         digit_len = 6
         if keeplongtime:
             digit_len = 8
@@ -35,9 +30,16 @@ class TinyUrl(APIView):
         except store_tinyurl.DoesNotExist:
             obj_url = None
         if obj_url:
-            return self.reGetShortCode()
+            return self._reGetShortCode()
         else:
             return get_shorten_url
+
+    def get(self, request, tinyurl):
+        obj_url = store_tinyurl.objects.get(pk=tinyurl)
+        return HttpResponseRedirect(obj_url.url)
+
+    # if pk is already in db   so re-get again
+    
 
     # register user
     def post(self , request):
@@ -59,7 +61,7 @@ class TinyUrl(APIView):
 
         # save data of format
         save_data = {}
-        save_data['short_key'] = self.reGetShortCode(keeplongtime = request.POST.get('iskeepforever',0))
+        save_data['short_key'] = self._reGetShortCode(keeplongtime = request.POST.get('iskeepforever',0))
         save_data['url'] = request.POST.get('url')
         save_data['iskeepforever'] = request.POST.get('iskeepforever',0)
 
@@ -79,7 +81,7 @@ class TinyUrlMgr(APIView):
         deadline = datetime.now() - timedelta(days=30)
         obj_kill_item = store_tinyurl.objects.filter(create_time__lte=deadline, iskeepforever=0).delete()
 
-        # todo  if your member will store for ever
+        # todo  if your member will store forever
 
         # using celery schedule clear anonymous data and more than one month
 
